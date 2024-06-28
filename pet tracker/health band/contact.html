@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Bakson Veterinary</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: rgb(231, 161, 161);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            
+        }
+        nav a {
+            text-decoration: none;
+            color: #333;
+            margin: 0 15px;
+        }
+        .container {
+            padding: 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+        .contact-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .contact-info {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+        .contact-info div {
+            flex: 1;
+            margin: 0 10px;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .contact-info h3 {
+            margin-top: 0;
+        }
+        .contact-form {
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .contact-form h3 {
+            margin-top: 0;
+        }
+        .contact-form label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        .contact-form input, .contact-form textarea {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .contact-form button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #333;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="#"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcST_3DpCZQtA5U1E_rEV2eSwmcSEigf8vjVRA&s" alt="Bakson Veterinary" style="height: 40px;"></a>
+        <nav>
+            <a href="main2.html">Home</a>
+            <a href="shop.html">Shop</a>
+            
+            <a href="doctor.html">Find Doctor</a>
+            <a href="about.html">About us</a>
+            <!-- <a href="#">Sign In</a> -->
+        </nav>
+        <button style="background-color: #4CAF50; color: white; border: none; padding: 10px 20px; cursor: pointer;">Book Appointment</button>
+    </header>
+
+    <div class="container">
+        <div class="contact-header">
+            <h1>Contact Us</h1>
+            <p>We'd love to hear from you! Whether you have a question about our services, need assistance with your pet, or just want to say hi, we're here to help.</p>
+        </div>
+
+        <div class="contact-info">
+            <div>
+                <h3>Our Address</h3>
+                <p>Luna Veterinary Clinic</p>
+                <p>123 Pet Street,</p>
+                <p>victoria 10001</p>
+            </div>
+            <div>
+                <h3>Contact Details</h3>
+                <p>Email: <a href="mailto:info@baksonveterinary.com">info@Lunaveterinary.com</a></p>
+                <p>Phone: <a href="tel:+11234567890">(123) 456-7890</a></p>
+                <p>Fax: (123) 456-7891</p>
+            </div>
+            <div>
+                <h3>Operating Hours</h3>
+                <p>Monday - Friday: 8:00 AM - 6:00 PM</p>
+                <p>Saturday: 9:00 AM - 4:00 PM</p>
+                <p>Sunday: Closed</p>
+            </div>
+        </div>
+
+        <div class="contact-form">
+            <h3>Send Us a Message</h3>
+            <form id="contact-form">
+                <label for="name">Your Name</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">Your Email</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="phone">Your Phone</label>
+                <input type="tel" id="phone" name="phone">
+
+                <label for="message">Your Message</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Bakson Veterinary. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.getElementById('contact-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            alert('Your message has been sent successfully!');
+            // Reset the form after submission
+            document.getElementById('contact-form').reset();
+        });
+    </script>
+</body>
+</html>

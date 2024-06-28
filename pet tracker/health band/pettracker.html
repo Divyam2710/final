@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pet Tracker</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Inline CSS for simplicity */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      background: url("") no-repeat center center fixed;
+      background-size: cover;
+      color: rgb(17, 16, 16);
+    }
+
+    header {
+      background: rgba(3, 2, 49, 0.8);
+      color: #fff;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header .logo img {
+      height: 100px;
+    }
+
+    header nav ul {
+      list-style: none;
+      display: flex;
+      gap: 400px;
+    }
+
+    header nav ul li a {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    section {
+      padding: 20px;
+      margin: 20px 0;
+    }
+
+    #profile .pet-info {
+      display: flex;
+      gap: 20px;
+      background: rgba(247, 240, 240, 0.6);
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    #profile .pet-info img {
+      height: 150px;
+      border-radius: 10px;
+    }
+
+    #tracking .tracker-status {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    #tracking .tracker-status div {
+      flex: 1;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      background: rgba(185, 235, 145, 0.6);
+    }
+
+    #tracking .tracker-status p {
+      font-size: 1.2em;
+      margin: 10px 0;
+    }
+
+    #map-container {
+      width: 100%;
+      height: 400px;
+      margin: 10px 0;
+    }
+
+    .chart-container {
+      width: 100%;
+      height: 300px;
+      margin: 20px 0;
+    }
+
+    footer {
+      text-align: center;
+      background: rgba(0, 0, 0, 0.8);
+      color: antiquewhite;
+    }
+
+    footer .social-media a {
+      color: #fff;
+      margin: 01px;
+      text-decoration: none;
+    }
+
+    footer .social-media a:hover {
+      text-decoration: underline;
+    }
+
+    .alert {
+      color: rgb(87, 13, 13);
+      font-weight: bold;
+    }
+
+    .notification {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      background: #af1c12;
+      color: #fff;
+      padding: 15px;
+      border-radius: 5px;
+      display: none;
+    }
+
+    .health-summary {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      margin-top: 20px;
+      background: rgba(171, 212, 236, 0.6);
+    }
+
+    .logs {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      margin-top: 20px;
+      max-height: 300px;
+      overflow-y: auto;
+      background: rgba(228, 182, 161, 0.6);
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+  <header>
+    <div class="logo">
+      <img src="https://m.media-amazon.com/images/I/51cI0K6l1UL._AC_UF894,1000_QL80_.jpg" alt="Pet Tracker Logo">
+    </div>
+    <nav>
+      <ul>
+        <li><a href="main2.html">Home</a></li>
+        <li><a href="shoppet.html">Back</a></li>
+        <li><a href="#tracking">Tracking</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section id="profile">
+    <h2>Pet Profile</h2>
+    <div class="pet-info">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSv4zgcGQw1omMl5YooVplqGIAQQCofN4zKKg&s"
+        alt="Pet Photo">
+      <div class="details">
+        <h3>Name: Fluffy</h3>
+        <p>Breed: Golden Retriever</p>
+        <p>Age: 3 Years</p>
+        <p>Microchip ID: 123456789</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="tracking">
+    <h2>Tracking Information</h2>
+    <div class="tracker-status">
+      <div>
+        <p>Status: <span class="status">Active</span></p>
+        <p>Last Seen: <span class="last-seen">10 minutes ago</span></p>
+      </div>
+      <div>
+        <p>Temperature: <span class="temperature">22°C</span></p>
+      </div>
+      <div>
+        <p>Activity Level: <span class="activity">Moderate</span></p>
+      </div>
+      <div>
+        <p>Heart Rate: <span class="heart-rate">80 bpm</span></p>
+      </div>
+      <div>
+        <p>Battery: <span class="battery-status">80%</span></p>
+      </div>
+    </div>
+    <div class="chart-container">
+      <canvas id="temperatureChart"></canvas>
+    </div>
+    <div class="chart-container">
+      <canvas id="activityChart"></canvas>
+    </div>
+    <div class="chart-container">
+      <canvas id="heartRateChart"></canvas>
+    </div>
+  </section>
+
+  <section id="map">
+    <h2>Live Location</h2>
+    <div id="map-container">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d223700.1490386933!2d-97.11558670486288!3d28.829485511234168!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864266db2e2dac3b%3A0xeee20d566f63267d!2sVictoria%2C%20TX%2C%20USA!5e0!3m2!1sen!2snp!4v1604921178092!5m2!1sen!2snp"
+        width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+  </section>
+
+  <section id="alerts">
+    <h2>Alerts</h2>
+   
+    <div class="alert">
+      <p>Geofence Alert: <span class="geofence-status">Exited</span></p>
+    </div>
+  </section>
+
+  <section id="health-summary" class="health-summary">
+    <h2>Health Summary</h2>
+    <p>Overall Health: <span class="overall-health">Good</span></p>
+    <p>Recent Alerts: <span class="recent-alerts">None</span></p>
+  </section>
+
+  <section id="logs" class="logs">
+    <h2>Detailed Logs</h2>
+    <ul class="log-entries">
+      <!-- Logs will be inserted here by JavaScript -->
+    </ul>
+  </section>
+
+  <footer>
+    <p>&copy; 2024 Pet Tracker Inc.</p>
+    <div class="social-media">
+      <a href="#"><i class="fa fa-facebook"></i></a>
+      <a href="#"><i class="fa fa-twitter"></i></a>
+      <a href="#"><i class="fa fa-instagram"></i></a>
+    </div>
+    <div class="contact">
+      <p>Contact us:info@pettracker.com</p>
+    </div>
+  </footer>
+
+  <div class="notification" id="notification">
+    <p id="notification-message">This is a notification</p>
+  </div>
+
+  <script>
+    const logEntries = [];
+    let batteryLevel = 80;
+
+    function updateTrackingInfo() {
+      // Simulate fetching new data
+      const temperature = Math.floor(Math.random() * 10) + 20; // Random temperature between 20°C and 30°C
+      const activities = ["Low", "Moderate", "High"];
+      const activity = activities[Math.floor(Math.random() * activities.length)];
+      const heartRate = Math.floor(Math.random() * 50) + 60; // Random heart rate between 60 bpm and 110 bpm
+
+      // Update the HTML elements with new data
+      document.querySelector('.temperature').textContent = `${temperature}°C`;
+      document.querySelector('.activity').textContent = activity;
+      document.querySelector('.heart-rate').textContent = `${heartRate} bpm`;
+
+      // Decrease battery level
+      batteryLevel -= Math.random() * 2; // Decrease battery by a random value between 0 and 2%
+      batteryLevel = Math.max(0, batteryLevel); // Ensure battery does not go below 0%
+      document.querySelector('.tracker-status .battery-status').textContent = `${batteryLevel.toFixed(1)}%`;
+
+      // Add to logs
+      const timestamp = new Date().toLocaleTimeString();
+      logEntries.push({ timestamp, temperature, activity, heartRate });
+      updateLogs();
+
+      // Simulate alerts
+      if (temperature > 28) {
+        showNotification("High Temperature Alert!");
+      } else if (temperature < 20) {
+        showNotification("Low Temperature Alert!");
+      }
+
+      if (activity === "High") {
+        showNotification("High Activity Alert!");
+      }
+
+      if (heartRate > 100) {
+        showNotification("High Heart Rate Alert!");
+      } else if (heartRate < 70) {
+        showNotification("Low Heart Rate Alert!");
+      }
+
+      if (batteryLevel < 20) {
+        showNotification("Low Battery Alert!");
+      }
+    }
+
+    function showNotification(message) {
+      const notification = document.getElementById('notification');
+      const notificationMessage = document.getElementById('notification-message');
+      notificationMessage.textContent = message;
+      notification.style.display = 'block';
+      setTimeout(() => {
+        notification.style.display = 'none';
+      }, 3000);
+    }
+
+    function updateLogs() {
+      const logList = document.querySelector('.log-entries');
+      logList.innerHTML = '';
+      logEntries.slice(-10).forEach(entry => {
+        const logItem = document.createElement('li');
+        logItem.textContent = `${entry.timestamp} - Temp: ${entry.temperature}°C, Activity: ${entry.activity}, Heart Rate: ${entry.heartRate} bpm`;
+        logList.appendChild(logItem);
+      });
+    }
+
+    function generateChartData() {
+      const labels = [];
+      const temperatureData = [];
+      const activityData = [];
+      const heartRateData = [];
+      for (let i = 0; i < 10; i++) {
+        labels.push(`T-${i}`);
+        temperatureData.push(Math.floor(Math.random() * 10) + 20);
+        activityData.push(Math.floor(Math.random() * 3));
+        heartRateData.push(Math.floor(Math.random() * 50) + 60);
+      }
+      return { labels, temperatureData, activityData, heartRateData };
+    }
+
+    function renderCharts() {
+      const { labels, temperatureData, activityData, heartRateData } = generateChartData();
+
+      const ctx1 = document.getElementById('temperatureChart').getContext('2d');
+      new Chart(ctx1, {
+        type: 'line',
+        data: {
+          labels: labels,
+          datasets: [{
+            label: 'Temperature (°C)',
+            data: temperatureData,
+            borderColor: 'rgba(255, 99, 132, 1)',
+            borderWidth: 1,
+            fill: false
+          }]
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          }
+        }
+      });
+
+      const ctx2 = document.getElementById('activityChart').getContext('2d');
+      new Chart(ctx2, {
+        type: 'bar',
+        data: {
+          labels: labels,
+          datasets: [{
+            label: 'Activity Level',
+            data: activityData,
+            backgroundColor: 'rgba(54, 162, 235, 0.2)',
+            borderColor: 'rgba(54, 162, 235, 1)',
+            borderWidth: 1
+          }]
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true,
+              ticks: {
+                stepSize: 1,
+                callback: function (value) {
+                  if (value === 0) return 'Low';
+                  if (value === 1) return 'Moderate';
+                  if (value === 2) return 'High';
+                }
+              }
+            }
+          }
+        }
+      });
+
+      const ctx3 = document.getElementById('heartRateChart').getContext('2d');
+      new Chart(ctx3, {
+        type: 'line',
+        data: {
+          labels: labels,
+          datasets: [{
+            label: 'Heart Rate (bpm)',
+            data: heartRateData,
+            borderColor: 'rgba(75, 192, 192, 1)',
+            borderWidth: 1,
+            fill: false
+          }]
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          }
+        }
+      });
+    }
+
+    // Update tracking information every 10 seconds
+    setInterval(updateTrackingInfo, 10000);
+
+    // Initial update
+    updateTrackingInfo();
+
+    // Render initial charts
+    renderCharts();
+  </script>
+</body>
+
+</html>

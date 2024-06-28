@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Belt Tracker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+        }
+
+        header {
+            background-color: rgb(244, 245, 201);
+            color: rgb(6, 8, 8);
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            margin: 0;
+        }
+
+        nav {
+            text-align: center;
+            background-color: #444;
+            padding: 10px;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 15px;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        .main-content {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .main-content img {
+            width: 50%;
+            height: auto;
+            margin: 20px 0;
+        }
+
+        .info-section {
+            background-color: #fff;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .info-section h2 {
+            margin-top: 0;
+        }
+
+        .pet-images {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .pet-images img {
+            width: 200px;
+            height: auto;
+            margin: 10px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .purchase-section {
+            background-color: #fff;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .purchase-section button {
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #28a745;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .purchase-section button:hover {
+            background-color: #218838;
+        }
+
+        .tracker-section {
+            background-color: #fff;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .tracker-section input {
+            padding: 10px;
+            font-size: 16px;
+            margin: 10px 0;
+        }
+
+        .tracker-section button {
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .tracker-section button:hover {
+            background-color: #0056b3;
+        }
+
+        .tracker-section .hint {
+            font-size: 14px;
+            color: #666;
+        }
+    </style>
+    <script>
+        function trackPet() {
+            const ipAddress = document.getElementById('ipAddress').value;
+            const predefinedIP = '192.168.1.1'; // Example IP address
+
+            const ipPattern = /^(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])\.(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])\.(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])\.(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])$/;
+
+            if (!ipPattern.test(ipAddress)) {
+                alert('Please enter a valid IP address.');
+                return;
+            }
+
+            if (ipAddress === predefinedIP) {
+                window.location.href = 'pettracker.html';
+            } else {
+                alert('Invalid IP address. Please try again.');
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <header>
+        <h1>Pet Belt Tracker</h1>
+    </header>
+
+    <nav>
+        <a href="main2.html">Home</a>
+    </nav>
+
+    <div class="main-content">
+        <img src="https://m.media-amazon.com/images/I/51cI0K6l1UL._AC_UF894,1000_QL80_.jpg" alt="Pet Belt Tracker">
+
+        <div class="info-section">
+            <h2>About the Pet Belt Tracker</h2>
+            <p>Keep your pets safe and track their movements with our state-of-the-art Pet Belt Tracker. Featuring GPS
+                tracking, real-time updates, and a comfortable design, this tracker is perfect for ensuring the safety
+                and well-being of your pets.</p>
+        </div>
+
+        <div class="pet-images">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJYVPbhCg8v3mHwANWPDZQBa9GDFv0byCglQ&s+"
+                alt="Pet with Belt Tracker">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTo21Rr7Z0W3J4wws7zuNl_-gem5P3_dldylQ&s"
+                alt="Pet with Belt Tracker">
+            <img src="data:image/jpeg;base64,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"
+                alt="Pet with Belt Tracker">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbvMVBg0DPOrWJozk5bVjFjwnZTKe_ZVYecw&s" alt="Pet with Belt Tracker">
+        </div>
+
+        <div class="purchase-section">
+            <h2>Buy Now</h2>
+            <p>Get your Pet Belt Tracker today and enjoy peace of mind knowing your pets are safe!</p>
+            <button>Buy Now for $49.99</button>
+        </div>
+
+        <div class="tracker-section">
+            <h2>Track Your Pet</h2>
+            <p>If you already have a Pet Belt Tracker, enter the IP address below to track your pet.</p>
+            <input type="text" id="ipAddress" placeholder="Enter IP address"
+                pattern="^(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])\.(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])\.(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])\.(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])$">
+            <p class="hint">Example: 192.168.1.1</p>
+            <button onclick="trackPet()">Track</button>
+        </div>
+    </div>
+</body>
+
+</html>

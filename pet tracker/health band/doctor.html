@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find A Doctor - AMC</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .info-bar {
+            background-color: #50c5da;
+            color: rgb(17, 14, 14);
+            padding: 10px;
+            text-align: center;
+        }
+
+        .info-bar a {
+            color: #2d30ec;
+            text-decoration: underline;
+        }
+
+        .header-content {
+            background-color: #fafafa;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header-content img {
+            height: 80px;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        .find-doctor h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .filters {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .filter {
+            margin: 0 10px;
+        }
+
+        .filter label {
+            margin-right: 10px;
+        }
+
+        .clear-results {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .clear-results a {
+            color: #003366;
+            text-decoration: underline;
+        }
+
+        .doctor-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .doctor-card {
+            background-color: #ffffff;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .doctor-card img {
+            width: 100%;
+            height: 200px; /* Fixed height for the images */
+            object-fit: cover; /* Ensure the image covers the container */
+        }
+
+        .doctor-card h3 {
+            margin-top: 10px;
+        }
+
+        .doctor-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .view-bio, .book-appointment {
+            display: inline-block;
+            margin-top: 10px;
+            background-color: #003366;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .book-appointment {
+            background-color: #4CAF50;
+        }
+
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #ffffff;
+            padding: 20px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+
+        .popup p {
+            margin: 0;
+            padding: 10px 0;
+        }
+
+        .popup button {
+            background-color: #003366;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="info-bar">
+            <p>IMPORTANT INFORMATION ABOUT YOUR VISIT!</p>
+            <a href="main2.html">Home</a>
+        </div>
+        <div class="header-content">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcST_3DpCZQtA5U1E_rEV2eSwmcSEigf8vjVRA&s" alt="AMC Schwarzman Animal Medical Center">
+        </div>
+    </header>
+
+    <main>
+        <section class="find-doctor">
+            <h1>Find A Doctor</h1>
+            <div class="doctor-grid">
+                <div class="doctor-card">
+                    <img src="https://lh3.googleusercontent.com/fife/ALs6j_Hd1pn9hmXgY8cMDJicQRXUSeIrcBh4-PJ25TtunVslntHFj6UlI5gTolOhTcW4l8MALb6teOC7KLXQDC_4mARFj9Hj4Hyp5VWtrqrKSLNuu6F6LYxAD8ynP7--p27wZvgTc6rWxyfHiIKY0ZJWBGGqNp8E5g4GqVSJ6XO5nhBXNm7GdSZimjaZ2zYM86syr-3N-9woMB5f2fUjcheb__sGHpI4_JQHVmCSdRUhm5reXa1EAQmnXYt2RgnIIv61H81_06xe5jxPtrkrBxM4pnkzFH6R1hTNilQ9kvQIleJGTGPdlYXoi2b8hMPWcPR_0_dPwoocr9DinOO7qfAq1TMjEg29JdKHAT0Tb1McpyhEUVFNoo9mYCKLKNsZGufhgul7fe527lXlbUFeld0aWuoXbJeJEL-biJxfFhdWsSQSD1omDRF3Z7OO_pCYFtVNOSsPxFGfKBlAj480cDbD77kr46bYHnqh2ukaJsgjSLz5LskJ9pX-SwRkfHqguapa1-JZTSMWYhlT0T9V62wETgyssbQwn3IhYElUApQ4IBOvak89oFZP_uQJZwyVgCiEzFch-DhPIY1SpOLMd3oOazn1SV7GqZnuL28WRtVJFXLxvSvXE8Xv0yFUMyVadnZoapk9V-nD2_ij_GQjqNiQV5-KzdgUxic79if1_pQlcfCZwsdEr7TOvN5cGCTWVcoKWRMalGBh00DqH4soxTf8sWKxpqJxK0h5CSnR5xGl8GAC01Ql3VmSFT0q4hVV87G4b5xQORm4ZA-HD9bpM8ccfilC3Codl-v_jDL8t8VS0fD4Tl2ol7FSJUFm7g27A-3MTXOPXy1WfrFsPYT1FN_90fHIWD3rXLG1HKaXyPNezNOXilUhGylKUky-otaudwNtwNN8QqOrwZibbRTl3r7GYVOiIErTosxe9aBCkyfe6Xef8-9q0X0bd7fUn2mL6YnobGwdh2dn6cGzow7Abn6CQxTkWw-IjyJCoGdqVCVdUXOfBoocbSFcAXHetWYIwpMAlPgUPJPfvNeSLjfVFLL7JxDFKSVG0Hr4ilaFVzS5kV60jmy2B140oXPW6MZCM2lqDmD4CwMixHyMTl8_1XIu35mjUSZpJi-f8Z50KXWpFZgRSx6OKzGxnCNq8dchSAv3mDhRnCiusX4Bh5_hXyPZN4f1BqwmFduOLrfbc--9MiebL90OcG8cv9NprzP5QudcAusLF5Q1QHfHEch-PEawySRTlMFms9BmlYHksu9Rtz209C2tIMVZhssTwXeEnTG5hnb1KbiRZvXTmP6OeFGU6mdx-Et5DKvmLyT96kBeJDhYWtzQ2eXc60VsCI_-M5WaTxLwayAvABf3lrkXSuH5ekL2LFJ0Ulc-4tdb4P3NlIWsspu88GW5Xd0NzlMsscuOLCTikRlzl3CJr2e_Bq2cNrKxYng_6N2RPGfeDXA-Jh2sZie_ovsFnpUtSOR-L6xbwS607FFFJxN0YUUJvujtMNcm09K3rcnjudhoSHb768WBHJ4xZnDPRFtyIfukXYxbdoFRtNHiNbYWQe7Xx4ibue-xNoEhbAOCqIqqKAd939ujhcKt3zaXeQCfpRE-onVxeFYlwU4JgHisOho6=s320-w320-h200-p-k" alt="Renee Alsarraf">
+                    <h3>DR.Ajay sn Doe</h3>
+                    <p>DVM, DACVIM (Oncology)</p>
+                    <p>Senior Veterinarian<br>Specialist in Oncology</p>
+                    <a href="#" class="view-bio">VIEW BIO</a>
+                    <a href="#" class="book-appointment">BOOK APPOINTMENT</a>
+                </div>
+                <div class="doctor-card">
+                    <img src="https://lh3.googleusercontent.com/fife/ALs6j_FI6MFzHkl2Td-NdecxWrAZ6EriGxT4WbOfOqqu4uwxFgS2JqWS9FxZsTuLPkAlMxNJsM9VtLW9bVlO0ymISK46dyLFphNo3-9cYUD9ut4oFgiwbK0kqOwOk55DEUZku_v37mdsc9TqXADrMWxGIjnv0v61ZOagOG_FuDROmCO7plV1ZcmjU0bGDeJS3jG7F0-ztCSy4tdTo2uIIN6YsmvTnQY2WwPQfsb3eTpLuP7L5q1u6ZHK-Ox7y38reUgMcm4_k1PtIRdgWv11zFYSdfxoqSrpcXriuzvIf5hyRcEd335yJlXW89MSP3xnz5INE07fwIqwSMQyEKrWbBzf__LH28F_rfRXOpY7oA-hGkiC0YRst9W-4m_KUgGfLjII6_LYlZCQXngW2GsrgCQqGQZzoHDJGa0ubMt7tsVSL9C2XfdNLhrwlNPKZMWIMgqZ31XQwbhRQR9PSnImz9tORZO7IuLJ21Y-carX3UOH4jyYKDTHlGeA8sfEdxfxPYbhHZ3e_BOHVxGyKmx7wTmCl5Rc-l01jm7M4mNIhMoZaxVS15PpeVGK1Z72yqsssFI41PVy6M5K0a3EgQSZ4oyNGA7xqTSaFgfTpXFgqy1WH4ZnTrqXjjEfh_NAxFIWyRapiWTx9cKr4HmrYEPLO-nCoP9ROst4mj2Bx7aDdIDsHdMCl2sK01bfIsnBD1wOk9FtSh8dBzmkIn9N4Du18h1P9tbDxhaNpUMe_prz_PEbzhLX2Sy--lUj9oJdOIguQvaQ_LJ-QpaZIe-RFF_ViIUQeJlrKSDvg8GjVwXfh_S8grnjPZYHIAmPJicbvyn5ZyfmfhIo-gkZHcdY7WO1GSR_CG_O7zHnVevZ42WtO7-oABF2ivuQ7mPlxWh7Y1GDc53oRy9uoGfqge3TeEcXvx6pj5tnPzx3FdXao8RDGio1KQ_ZnaTgUyEVArMu9kUl4IXq9XnkdWH5ZGfpUQUM7A3wZuFgdCp8C_BA-gEPECqnCQSllOmDb7Bx3lIShxi_N8aUrodV8m4AGugwUpqrkhro3pkrB2v9SxzEQmThxEj_AoO-jlCeF2f7qfst7NQAINECDf_Zzb4xkluy_yCo9e-CPP_lp_dDFrJT-_PsZXpfnQ93w9McyeI61Kv53lypYfwrQbJLW00eJmiKCH4fTfQh8c_3esI53blMTJlJfs8Cc1x5E1lT5ckEcUvfXEWSYN9aOVFfCSHV1yzuiMYaup3KkLBKv064MOEPHdKNnGpqOl-5fI2yaZHI-Yr49VPJD-VFR8UU-3Sc4sHlTzUTp17xC2K7a-MHyNYLkLMHGl1ksl2ZJxiFuVM3p2Qmf1K22OLEkPCxYr7QZlydoOmfqA65Yw7q07aP9VZ-yD-J5RWt3e4D6TlSzuUywyO46tAxVatO5-guAsXR58ICMQCmiheQfIVIfFgMFbhgrdCAJJbeg_4sQTSZW-5dHJUWPn-Nuhl_ImNW4jLmF75WS5dBUim3zRUKzEuvqlOTTo82F9scfxhD4Ij1yB57X_VRQxp5ZuT_05ep9x29lNsNPfU9E7-xGFSbVdcrNbdMkS_KyobaF3urlOWa48DkRd1YSxKaVNqbQrgMakGX24ltVah0x5A=s320-w320-h200-p-k" alt="Leilani Alvarez">
+                    <h3>DR.Dane smith</h3>
+                    <p>DVM, DACVSMR</p>
+                    <p>Senior Veterinarian<br>Specialist in Sports Medicine & Rehabilitation</p>
+                    <a href="#" class="view-bio">VIEW BIO</a>
+                    <a href="#" class="book-appointment">BOOK APPOINTMENT</a>
+                </div>
+                <div class="doctor-card">
+                    <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxMSEhUQEhMVEhUVFhAVEBAVEhAQEA8PFRUWFhUVFRUYHSggGBolGxUVITEhJSkrLi4uFx8zODMtNygtLisBCgoKDg0OGBAQGCsdHR8tKy0tKy0tKy0rLSstLS0tLS8tLS0tKy0tKystLS0tKystKystKy0rKy0rLS0tLS0tLf/AABEIALcBEwMBIgACEQEDEQH/xAAcAAABBQEBAQAAAAAAAAAAAAAEAAIDBQYBBwj/xABAEAABAwIEAwYDBQUIAgMAAAABAAIDBBEFEiExBkFREyJhcYGRFFKhMkJyscEHFSPR8BZTYoKSouHxstJjg8L/xAAZAQADAQEBAAAAAAAAAAAAAAAAAQIDBAX/xAAhEQEBAAIDAAICAwAAAAAAAAAAAQIRAxIhMUETUQQycf/aAAwDAQACEQMRAD8A7QM74WwjboFkKU2cCrpmIFXKy0uMl1BUUAdyQYryntrHFGxpUYjgHNqqbviNitY+YlVVfS5lN0uAYa8FGwyBUs1G5uy7DUkbqVtAuFAwVd0W19006IhNIT00hMkZC4V0hNsgisntC5ZdAQSKpqQwa35bC+6yOOcXWJhj7pFw55zWHgLbIDi/F8z+6dgWixIFgedt/wCvFZRjS65Ol/vXAaBzAHNZ7236zH/V+/jCdw7PMQR98Czj03KCbxDUA37WTfS5Dhtzv5jmg2Uji0FwLtdxvfoeunPwCl+Glba8ZJPMj7p5lPwat+mkw7jiS4EjQWi17aOdyJt15reYXiMc7czHX6jYjzC8cfG6/fsQOltG3uSPdXmC4s6B4c0912jm7XHW1909p67epFq4QhsNrWzNzMN+vUHxCKc1OXaLNGEJtl0hcyoB7QnWTA1PDUjOAXQFwNTg1Bu2CQsllSyoB2iWi4GJFiA5okuZF1AVEQRjENEEXGFTNK0KaPRRtUzEGidPc2CmbGutiF7qa6DDyUoKqqzC+YV+muCBtjJYXMT4a2260tRSByo6/C+YS0e0sNYCiBKFmZMzCiKfEuqBYvsySDgqgUU1yaakGyrcexMQRF/PQDzOgv4K0H2VheMM17OsdXkHvCzb90eFgNbcypzuovjx3WMqC579rucdPEk6+q3fDHCYFnS987gWs0dPNUfA1CJajM4Xt9B/VvdeuUsNnDpouflyvxHZw4T+1VLOHGg5gwDxsFypwprhYi/JbTILKvq6cdFhljr7b457ecYnwfcEx6c8pBsSOWiyc1O+J5bselregNttl7hTMGxG6wv7QcKa0hwHl4HwW3HlftjyYz5iv4UxnI4tLQ1hAzeFjYOA3J1+i3JcvK8HnyuDyfvafLmJ2vyH816nE0loNjqAfotsPLpy8vslNcU26eYj0S7B3RasduNcpGuTRTu6FSNp3dCkp0JwCcKd3RStpndEBFZIBE/Cu6LjaR3RARtCcWoltG7onfBO6IAPKEkX8G7okgM/QQ5jZXAw5V2BHvrT5gqTFT8EnimVkbLmVIwAp13sEdlXC1AB9ko5W2Rxag6/QIAUvUUhBXYm3SfEglZU0YcqDEMJI1atQD3rKeWnBGoQNvP2Pew6q5w/EAdCjcSw8WOizr6ctNwg97bWABzViuM6FwcXZSWGxvYkA6WB5DmraixEtjuVJX4qx0LgSLkGw3JUZzcXx3VZz9m7LTSB5tZgcSdAADY+11u4uKaZrt3kfPkdl87rEcIPa6qLcocDHI0t2L7HOL9dla1FfiL7tjhbC0EgNcGAWsbddL21032XPl8uzDenoVJiscjczTceRH5qsxrHXM7kMJledtQ1oPjdBcPsk7omy6g3DNtNioMQoXve8BxYNLEAk25/p/zsce1a9IIop64PBk+Gt/d3dm8rglS8VU3bUziQAbE2uHZXDoVkxw7L2l2zyFt9G9l3mi5IGbTXYXFtlsm05bAQ8kmxBLrEnS19Fe09XlGGUOcd++UG5LftW8PWy9xwKgvCwO+0Gszfiyi9jzXkMGHSQu0ub5DI0Xy5L6k+n1XteBG0TSSDe5BAsMpN2i3KwsPRdHHd3bm5prGRM3DW9FM3DW9EQJE4SLZzIW4a3opBh7einbKnCRBoW0DeieKJvRTCRd7RAQ/Bt6LvwbeimzpZ0BF8KOiXwo6KbOlnSCD4UdElNnSQHklBNlN1atxArPQThupVvTPDhdUz2KbimtkVHXXWdk+2rukaLBI9ixVrvxJTGsCkyBA2XblCV0twi8qBxHZA2ip3p0kiZS7J8qC2Eb9pTyvKgg1crCRuiZWqirOiq6uMZSrquGiqKt3cKC2ztZIWx6J7WWYHHc6G4+7z16KLEz3PZWDIs0YYN3NcC4nRrOhHO5IUZ/DfjvqHg1mWbLbc3zdCDlPoQ/6L0dlLFa72g87kBYijoewk7Q97WNoO323XcdPw8+o6LS4tMQw62aftP6M6hcnJuX138VmU8WOHytfd4LWtJIb1IBtdNxCsYwO/iMDgCQDqHWF7WVFBPT1FhEx0/Z3ZeIPHZutcgkbGwRD8GkuHNo5HHXvPLQRYhpuTrofoFGr+mnn7WdJiIc3VuV2l2/y8FNWSiRuUe3isn8ZIZ+x7FzALB0mdrgCeQtueoVwJxG10jjpG173H/CwFx/JLdl1RZNbUuGV7Z3ns7ENID3jdwa7uBun3iBYnotxRzlrGt10DRz5C36LCcBPbkhiBbdxc1wGWxaGtcNQddb66Hf19OEIsuzhxk24P5GdtgFuIFSfvAoapq2MdY2Q9VjEbRqQt9OXss2YgVO2vKzTeIY0v7SxpK21Ta4p4rSsmOJmdFw8SN6FI91rjXIc4029rrLP4gB+6VXSVRc7NZBzb0JuJt6pfvRvULCtrnWtZL4hxS2bc/vVvUJLDZykjZ6Ztz9FaYPNoQqZz0Th81iqYrCQ99X1Jss83vP0WlpKc2CDTMUidFCUSynQAqrcUOivzSqmxiKyDB0p0TpjouQM00SmGiEhaN3fVnI5VFIe+UfK9BUBiclgqipPcujsUkQdRKOz9EEz2KHuD0RcALo27hwIyn/yB6i19ELiIu0eY/n+isKNri1pFrXOa5OrbWNh/0s8v03w89FyV4B0AO2hF9Rs4dCP1I5q0wqpDohC/WwytJ5t5C/UfoFj532k191vsBwS8HbzXYwDNGDo5xGxsdh+anLGZS7Pi5MscvEkbXwEyQktLyHSBth2hta+oOqir8VnlGQ57G4N3WaQdwQ0C6np60NGV+3I/zU0mJxAfaZ7hcna61t6kv3r0LFBlaCdLXtpYXPQKg4vxFsVK9rruMhEYANtbF9if8uo8bI/EcXL7Mj9X/wDr/NNOBR1UYicLvaXSQ82mQNNw8WNxa/ijD3JOf9bVdwHhczXxFzb2u8E20YbDT0v7L1TPos5wlgj4mBzyWO0GTR5awBttelwSLaWK0jxou3imo83my3f8Y/ikW18Vl62ovotvjlOHArIYjTAHRasAsJ0TrImlpwQuTMAUrRNUzCok+NJUEsRDAooWIyKEoMmsUzWKWOnKJjpSkYXIkjxRlJBvOXPToJrFQuKZmsqZNLg7szwt3AzQLKcN0ALQ9aB9TkCNjSzYxStas87GgEoMfBKDaNZ3iZ1gjG4w3qqPiGuD7AdUyGYc27U6qjFim4W/uBPrHd0oSpKf7RRb1W08neKKfMgqBxNt9FWYhCRGrymo5KiTs4xcjVzjo1g6krQHglrm2lkcfwWaPcg3QclryfEHkNb5haTAcHqJQAyM2d9592Na0bm5GtvDqvQsL4RpoDmazM8bSPOdzD1byB8QFcw0xuCb6AgbWsbX2AvsNVFnrWfDP8O8FwQHtX2mk3zuHdZ+BvLzOvks9xZjrp6wUkZ/hw2dNb70mmRn/wCvQL0eo0abaabryPDcLlglmdKy73yyOcQ7Nu49baW+gCy58tYuj+NhLktXxZhZVFZQnkr2keHa2Ita9wdCdhf0PsipqZtr6Li07t6ZOCPKdd1peCJO0qnEAubFGdub3ka3Og0afdU89Pck8lc4FX02Gh0c8o7eUNfJC0FzoGkHIHnZtwb6la8GO8mXPlrDTasgJDtmkm7QDmA0Gl7c9/VV00x1BFiNCuYfxdSSSRxMe5zpQezIjk7MloJLe0tlzWB0vyR1dTCTvMIuR/ldbRd8eblNs9iD9FjcTfcrR48Hx6OBafHYjwPNYupqDc89U2S7pGnKhZnAlPNTli6LNwYic515oONBkU0TUBTVd0Z2wSUsIXAKxpXXVHHMrfDpAkpaxFGRlBwkFHRtCDPzpLuUJJG8fcwqGdpstWcAPVNPDzlSNDeCKomPKeSva1VGB4c6Eq2qWk7JVUZ6qOqgi3VjLh7yVG6gc0XKCrsDLptdT2XI5LLs02ZNCzw0d1LEZLNSpT3UNXsJamSpp90fT0+d7I/mc1vlc6lV9INVr+EaHM8zkaN7rPxHc+g09UFJutLTUzI2NYxoa0chz8T1PipL7jyXQNx/WqUe35qWzNcfY4yjpXS3/iHuQC5BdKRvpyABJ8lXfs8wWojh+IqKmd0kxzmN8rntjYdWjK64B5nTwVJkOL4rc60tH/pe6+n+pzb/AIWN6r1CNvhayA5MO7brYe6oeKIsj2vto8WP42gW9x/4q5rZnBzAwAm5JBvsBbcbHVcrYRURujcMrrXbfXK8bEHn/K6jPHtjppx5dcpWFkaCb2UtJC9xIZncSMrg0uPdPI+Cu8JwIuAfMCD/AHV7W/ER+QV61rmANY2NregBAHsubHgt9vjqz/kSeT1n8M4X7zZJQAGkFsejtRtfkBtoshwZhra2ur6qUB47eRgLmtc3uksjsDpo1h+i9WidfUi31VBwhhUUMGaJuUSudIdSdycu/hZdOGEx8jlz5Ln7WCx/hV+GvZX07u6xzRPHs1zXGwcANLXt+E2PIr0jB6lk8MUrCbFu2xBvqD0Oqk4gp2yU0sbxcOjkBHhlKw37D6t8kFQ17i4Nla5t9SC8HN75QfUq0PRpqVkjcsjQ9p+64Aj/ALWVxngOF93wExO+QkuicfXVp+ngtYDz5X08k9BWSvOqPht88bhqwtLmWtqHN0IPqvMayidBVSQv0LXEH6H9V9LUjGgnS1zc+J2K8i/abgl6/tG6B7GE+LhcflZNMmlThtOCAjpoQEqCkygaqaqpHHUIJ2lpgeau8Poh1VLRRH5lbRlwtZymtJ8NFS4eN7lOkp7bFDYdM4jVyJfGTzRThtikiGQabpIPxVBgT2MBXAUy5CtkIbGE8RhDskUzSUGmEQQWKttGUcxBYue471SoY1rkQeSEBU4fsnGdW8ctmpT1IyKudLohKiU2QW0tEC51gLlxsB1JOgXp+G0gijbGOQ1PVx1J91jeAcNzE1Dtmktj8X21PoD9fBboJVeM+3XG2qznG+LfDUb3AkOfna1w3a2xL3DxDQ63+ItHNaKRtwR1C86x1/x2J09D9pkQbJU9MrMsrmkdC8049UltB+z7BfhaNjXNAkl/jTW5OcBlZ5Nblb6LTjdcAXSbaoAK+aVx5NDW+u5/MI6PxQNINz8xLvcqwYEAzPb11TCbpOOp9h6f83XGC5QEh0afI/kg8IblghH/AMcen+UIud1mn2A6lQYbHaNl98jB5WaNEG7WN/hvO/cf66HRYb9jFC6GjlzsLHGZxIIINuzYW776O+q3VfKGse75WuJ9BdRYVFkjZH0Av5gWQBgaulcJ910N6oI1zyNRyBWB4xicZWyE3BFgPlW6rahsbHPcbBoJ/kPewXnNVJJMQ552QKCa1ys3i0V/BDtjtoURXOtEfJIRlWVT8xt1VxSTu5qjp3i581dU70Li2pqohWMNW4oGionP1CshTFiQSipd1SXBGkgzAFwMKeGqeNi1Y6QCNTMjKnbBfmiGwJK0hjjVdjYsx3kr+OBU3EjLMPkUUMAHKUOQgcpWuQyopx0Ubad8rhHG0ucdgPzPQeKJo6YyGw0W94bw9sUIsBmN87ubjc216IGM2MwiiEMLIR9xoBPV27j6klGpoT2pNXAdFiOAMOIqsRqH3JNTLCwn5GvdJp6Pjb/9YWze+zfWw81W8NNAjkd89RWOPj/He0H2aEgt3usLoaSTM3LsXGx8hqfp+aIOosVC5oBFuQPuSP5ICSKPkp3GwuooF2V2nqEBHZUXGmOS0VKZ4YTM7M1ujXPbG2xOd4ab5dLac3BXqUh0AG509OaYUvCHE0WIR9ozR7AztYjvG5wvcH7zTY2PgrahnuHMP2o3Fp6kWu0+o1QcODwxZjCxtO5xLnPia1mZ53LhazvVV2KVE1KJKyQxvYxlpC0SMc5gPdc5uo7t9xyJ0SNcVozWi+Yhz/CNpvb1IAt0zdEVE0DVZ7hniGGsj7aJ1za8jT9pjiNj125aLSxtsAgHNHNIpySCVWO0pkgka3U2DgPmykOy+tljqarYQtfxNiZp6eSVou4ABg5Z3ENBPle/ovLoqnQDmllVTG2+NGGtcdFJilIOz3VbQzkWVlis57P0T0zt9ZZuGBut0fRUxNhfmqmeeS9gtHwwCT3gjS9+NnhVOGsGybiLRZTMFgoKqMkIpQICkoQkpWqm1x+YfRSNr3dfyXjza6Uffd7qZuJzf3hS7n0evDEX9VI3E3ryJuLzj75Urcdn+dHc+j15mKSKDEKl8jSCvLm8Q1A+9+ad/aao+ZPuXRqjhDhqmfu8+Kn4UxJ80RL99UDinExieW5L25p9kfjXOD0xaSVucGY4Qtzbm59Cbj6LySi4zD5GRBtjI+Ng05vcGj817QwchsE5di49fEjfFdC4E2TZBKXiXF200T5naiJskuX5i0d1vq4gIfgWYuw+mc43c6JjnHq5wzOPqSVmuJ4zVSzRvf3ATH2Y00AtmzdTmJ8Lq04frm08MdPYlsbGsa64LsrRYXCz/LjvTb8OWttgHJOOvoP1QtJVteO6QR+SIIsfQfqtIysEwptRy8/0K7EdFyc7eqCMKaDdwHRo+v8A0F0nRchGt/L6AIB8qbKzcb6ajwKUju8AmtlBc7zt9Ag2UwfhiGkLhSMyGaVnalz3H+G117C99AMwA/xLYzVLWfaIF+qxuI4uW1FmjMYy7s+bRI5pBcRzIDnDwuqqsqi4k53SvJGdw+wB8rn9PALLLlk+G/HwXL2+PSxK29gRci4Fxe3W3RdcFluHaGUOZI5ptY21Aa0WsCLm7vNatXjdxnnjMbqXbM8f6UTz0dEf94H6rzClqG32Xr3FFIJaaSM7HJ7h7T+ixNNwuwa7J35TN/QCGXwUmMynJa3RD40TA8NbqFJT1JmFiFp3jPpVdT36K+wSSz+iihpNUZSwd9K2HqtZDJdFwxg6ICkKMiOuinZ9aRw5qShl7W5ta3JJM3hf9l5+l0x/D84+6nXxZvIH3V/wjU1bpHCqZYBoycwXX1+iz6tJmzX7pmH3CmHD5R9w+y9XAb8o9gnZWfKPZLR9nkrqeQbsPsVC9rvlPsV7AYIzuwKN+HQndgRodmY4IB7I+qpuIGXkcvRIKSNgs0W9UDU4FC8lxvc+SdhSvM8BpC6tpg3f4inPoJGk/QFfR7XABYDAeGYWVMcrb3YXOFwN8pH6retbzTxnic7upGlPIURenNYTufRUhkcbwIskdNFdzZCXSDfs3WFz4tP08kK2kNuS3eg0QVZhEcmti09WnL7jb6LHPi3dx0Yc+pqsiIG3tnsfzTqSCV0rWMkcA4gFwedG7nS+ul0biPCz945c3+FzbH/UNPoo+FIJG1GWRrhZkhGYEaghv6lZTDKZSNryY3G2VsGMAAHTrqT5pFKQpgfddbhdcwFM7I3BB0G4tv6qQFPCAiNMCc1z5aKJ+Ht73eeC7dwdYgnTTTRFrl0GpaPhiFjrm8jbaMeGkZuZd83kVZx4fCNBFGB0EbAPyU4K451rFKYyfEVc8r805rQBYaAaDwXHLpKaXhNCm4lq8jGMvrI7/a3U/XL7qo7Y2QPENf2mICEbRRi/g+Q5j/tDPdSudyUZVrjGex2QGTVRUswbtZD48Ly7oQA9U5Ss9aCKoR0Enis7AD1VlT36p7LTQQVJ6o2Ksd1VDCSi43lAXYr3eCSrBIUkbCQtF9kNiAGUG3MLiSrL4Z4/INr08OSSWbU4OXcySSA6HLuZJJMhuCyWlHiHD+vZaTMupJxNObonAkrqSZHtCeEkkA2TUFQ0sYBNt+ZSSQaV4Q8mhSSQR8cimBSSQHUwOXUkAi5NcbrqSA7G7khZnd6y6kgPO6PEIZaiWRoOdznZja22g+gAR70klja6ZGJxyS8xQ+ZJJUii6eQqygmK4kglhDMUUyYpJJhKKgrqSSYf/9k=" alt="Elizabeth Appleman">
+                    <h3>Elizabeth Appleman</h3>
+                    <p>VMD, DACVIM (SAIM)</p>
+                    <p>Senior Veterinarian<br>Specialist in Internal Medicine</p>
+                    <a href="#" class="view-bio">VIEW BIO</a>
+                    <a href="#" class="book-appointment">BOOK APPOINTMENT</a>
+                </div>
+                <div class="doctor-card">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsMSdyBKkdli09HM-FAvCm2ej3eBQVkA7O3Q&s"
+                    <h3>Aparna Arun</h3>
+                    <p>DVM</p>
+                    <p>Resident Veterinarian in Surgery</p>
+                    <a href="#" class="view-bio">VIEW BIO</a>
+                    <a href="#" class="book-appointment">BOOK APPOINTMENT</a>
+                </div>
+                <div class="doctor-card">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRH-iTi-oJH587stmWT8psAfutjbm8XYg4I6g&s" alt="Renee Alsarraf">
+                    <h3>Renee Alsarraf</h3>
+                    <p>DVM, DACVIM (Oncology)</p>
+                    <p>Senior Veterinarian<br>Specialist in Oncology</p>
+                    <a href="#" class="view-bio">VIEW BIO</a>
+                    <a href="#" class="book-appointment">BOOK APPOINTMENT</a>
+                </div>
+                <div class="doctor-card">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5OCu3wjjKUPBzglokmLZwxSDdTwD3hxs-rA&s" alt="Renee Alsarraf">
+                    <h3>Renee Alsarraf</h3>
+                    <p>DVM, DACVIM (Oncology)</p>
+                    <p>Senior Veterinarian<br>Specialist in Oncology</p>
+                    <a href="#" class="view-bio">VIEW BIO</a>
+                    <a href="#" class="book-appointment">BOOK APPOINTMENT</a>
+                </div>
+                <!-- Add more doctor cards as needed -->
+            </div>
+        </section>
+    </main>
+
+    <div class="popup" id="appointment-popup">
+        <p>You have booked an appointment!</p>
+        <button onclick="closePopup()">Close</button>
+    </div>
+
+    <script>
+        const bookButtons = document.querySelectorAll('.book-appointment');
+        const popup = document.getElementById('appointment-popup');
+
+        bookButtons.forEach(button => {
+            button.addEventListener('click', function(event) {
+                event.preventDefault();
+                popup.style.display = 'block';
+            });
+        });
+
+        function closePopup() {
+            popup.style.display = 'none';
+        }
+    </script>
+</body>
+</html>

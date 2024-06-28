@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veterinary Clinic</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-RE_wutURafkXQrfA2WttrYNOMhDr4RNVLw&s');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            color: #fff;
+            text-align: center;
+        }
+        header, footer {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 1rem 0;
+            position: relative;
+        }
+        header h1, footer p {
+            margin: 0;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.5);
+        }
+        nav a {
+            color: #fff;
+            margin: 0 1rem;
+            text-decoration: none;
+            background-color: #3498db;
+            padding: 0.5rem 1rem;
+            border-radius: 15px;
+            transition: background-color 0.3s;
+        }
+        nav a:hover {
+            background-color: #2980b9;
+        }
+        .hero {
+            height: calc(100vh - 200px); /* Adjust based on header/footer height */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .hero .content {
+            color: #ebebeb;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        .emergency-button {
+            position: absolute;
+            top: 140%;
+            right: 400px;
+            transform: translateY(-50%);
+            background-color: #c0392b;
+            color: #fff;
+            padding: 15px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 9999;
+            font-size: 16px; /* Adjust font size as needed */
+        }
+        .emergency-button:hover {
+            background-color: #a93226;
+        }
+        .login-frames {
+            display: flex;
+            justify-content: center;
+            gap: 20px; /* Space between the login options */
+            width: 100%;
+            margin-top: 20px;
+        }
+        .login-frame {
+            background: rgba(255, 255, 255, 0.8); /* Reverted background color */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            width: 250px;
+            text-align: center;
+        }
+        .login-frame h3 {
+            color: #333;
+        }
+        .login-frame button {
+            background-color: #3498db;
+            color: #fff; /* Reverted button text color */
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .login-frame button:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to Our Veterinary Clinic</h1>
+        <!-- Emergency button with id -->
+        <button id="emergencyButton" class="emergency-button">Emergency</button>
+    </header>
+    <nav>
+        
+        
+        <!-- <a href="contact2.html">Contact</a> -->
+    </nav>
+    <div class="hero">
+        <div class="content">
+            <h2>"Luna Veterinary Services"</h2>
+            <!-- <div class="login-frames"> -->
+                <!-- <div class="login-frame"> -->
+                    <!-- <h3>Doctor Login</h3> -->
+                  <!-- <button onclick="window.location.href='login.html'">Login</button> -->
+                <!-- </div> -->
+                <div class="login-frame">
+                    <h3>Patient Login</h3>
+                    <button onclick="window.location.href='login.html'">Login</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2024 Veterinary Clinic. All Rights Reserved.</p>
+    </footer>
+
+    <!-- JavaScript to handle emergency button click -->
+    <script>
+        document.getElementById("emergencyButton").addEventListener("click", function() {
+            // Redirect to the emergency contact page
+            window.location.href = "emergency.html";
+        });
+    </script>
+</body>
+</html>

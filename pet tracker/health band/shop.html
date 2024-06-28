@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bakson Veterinary</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: rgb(185, 235, 241);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        nav a {
+            text-decoration: none;
+            color: #333;
+            margin: 0 15px;
+        }
+        .hero {
+            text-align: center;
+            padding: 20px;
+            background-color: #fff2e6;
+          
+        }
+        .hero img {
+            max-width: 400px;
+            height: 400px;
+        }
+        .features {
+            display: flex;
+            justify-content: space-around;
+            padding: 20px;
+            background-color: rgb(200, 235, 189);
+        }
+        .feature {
+            text-align:start ;
+        }
+        .products {
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            justify-items: center;
+        }
+        .product {
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+            width: 100%;
+            box-sizing: border-box;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .product img {
+            max-width: 100%;
+            height: auto;
+        }
+        .product:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #333;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="#"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcST_3DpCZQtA5U1E_rEV2eSwmcSEigf8vjVRA&s" alt="Bakson Veterinary" style="height: 40px;"></a>
+        <nav>
+            <a href="main2.html">Home</a>
+            <a href="#">Shop by breed</a>
+            <a href="#">Store Locator</a>
+            <a href="#">About us</a>
+            <a href="doctor.html">find-doctor</a>
+        </nav>
+        <button style="background-color: #4CAF50; color: white; border: none; padding: 10px 20px; cursor: pointer;">Book Appointment</button>
+    </header>
+
+    <section class="hero">
+        <h1>Protect your pets from heat stroke with Heat Aid Drops</h1>
+        <p>Heavy panting, reduced appetite, increased immunity, behavioural changes.</p>
+        <a href="#" style="background-color: #f44336; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">SHOP NOW</a>
+        <img src="https://baksonveterinary.com/wp-content/uploads/2023/01/V19-1-768x768.jpg" alt="Heat Aid Drops">
+    </section>
+
+    <section class="features">
+        <div class="feature">
+            <h2>Pet Medicine</h2>
+            <a href="#">SHOP NOW</a>
+        </div>
+        <div class="feature">
+            <h2>Pet Grooming</h2>
+            <a href="#">SHOP NOW</a>
+        </div>
+        <div class="feature">
+            <h2>Pet Toys</h2>
+            <a href="#">COMING SOON</a>
+        </div>
+    </section>
+
+    <section class="products">
+        <h2>Featured Products</h2>
+        <div class="product-grid">
+            <div class="product">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHVkNKtPTSRAPEKbawfxfUGJwfyVZ3YsmQ0qEADeivSIo6TZ7FzOt5rVDKkda2cbpZie4&usqp=CAU" alt="Tick Aid">
+                <h3>Tick Aid Oro Nasal Spray</h3>
+                <p>₹390.00</p>
+            </div>
+            <div class="product">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyNM8KyTjIAenW4vUzFEtiaYtoyMZ_XxeQH7hcodKoXrAe1Hp6DgSaRvD6GNP1vDCYJRs&usqp=CAU" alt="Parvo Aid">
+                <h3>Parvo Aid Oro Nasal Spray</h3>
+                <p>₹400.00</p>
+            </div>
+            <div class="product">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkz-f98EOKxl5aGpPJMZfKd-4hTlH1DysPCeSgPVbyUh2c8oH9Rl_r4oSj7OmuRM9i5dk&usqp=CAU" alt="Distemper Aid">
+                <h3>Distemper Aid Oro Nasal Spray</h3>
+                <p>₹350.00</p>
+            </div>
+            <div class="product">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTf_gifvNkRjU_NTCV9DfG3Fr9gDf5RPBQVzw&s" alt="Destress">
+                <h3>Destress Aid</h3>
+                <p>₹400.00</p>
+            </div>
+            <div class="product">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6pE6RPIFi_04phoUv_iQor8yzWw_i4UtMSxtIUUbiNItSu4TZ5lnWEq5qdhFHIocMbLU&usqp=CAU" alt="Calendula">
+                <h3>Calendula Ointment</h3>
+                <p>₹450.00</p>
+            </div>
+            <div class="product">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbO5KnBDjWdeg5kxuMToi_3PWSuEx5KxOF5gMTeb84ObcVJ8puYxzehCpW-QsHc1v6Wlg&usqp=CAU" alt="Tick Aid">
+                <h3>Tick Aid Oro Nasal Spray</h3>
+                <p>₹399.00</p>
+            </div>
+            <div class="product">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9ehbaepQW6P_3e8bzf9eW0FHu33GlbWNsz8jxfL1yGS6KB1d7E_mcXo_0-RGI8m3rN70&usqp=CAU" alt="Parvo Aid">
+                <h3>Parvo Aid Oro Nasal Spray</h3>
+                <p>₹950.00</p>
+            </div>
+            <div class="product">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSydbRMZWJIrHSwlPijVNyUuouyHWRcuVds0A&s" alt="Distemper Aid">
+                <h3>Distemper Aid Oro Nasal Spray</h3>
+                <p>₹300.00</p>
+            </div>
+            <div class="product">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDHVDBCBst15aBU873WEADdGRvWwQ_DLAzzA&s" alt="Destress">
+                <h3>Destress Aid</h3>
+                <p>₹600.00</p>
+            </div>
+            <div class="product">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTx8u6P0_x4wAmABoA8fMCwj7LP96OKEfUClemhPyTyMiLm-W78LgnJ9lT8aPWgY0rjBD4&usqp=CAU" alt="Calendula">
+                <h3>Calendula Ointment</h3>
+                <p>₹850.00</p>
+            </div>
+            <div class="product">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAqJncWBA1hgcUsOUhzoLfIJPs8VTJfGNaq7JhSvf7K_My_rS1_CAbBk7iZMiSP_OKnUg&usqp=CAU" alt="Tick Aid">
+                <h3>Tick Aid Oro Nasal Spray</h3>
+                <p>₹950.00</p>
+            </div>
+            <div class="product">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtELIZ5OXNVOhhyygL5bp5Chd4Le00VgeaIQ&s" alt="Parvo Aid">
+                <h3>Parvo Aid Oro Nasal Spray</h3>
+                <p>₹250.00</p>
+            </div>
+            <div class="product">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyb2LY95TTtgfht8aOEg5IWFW3l6VZfY6KIw&s" alt="Distemper Aid">
+                <h3>Distemper Aid Oro Nasal Spray</h3>
+                <p>₹387.00</p>
+            </div>
+            <div class="product">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlvvFZJ-eI_4U_n84rC-YYxPkEiSUs0gH9oA&s" alt="Destress">
+                <h3>Destress Aid</h3>
+                <p>₹864.00</p>
+            </div>
+            <div class="product">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQA_PDaEnEZ1sprkY08__W6ByIjxVwEX85F-Q&s" alt="Calendula">
+                <h3>Calendula Ointment</h3>
+                <p>899.00</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Bakson Veterinary. All rights reserved.</p>
+    </footer>
+</body>
+</html>

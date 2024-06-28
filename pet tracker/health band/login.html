@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login or Sign Up - Veterinary Clinic</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkW_fZ7GBHZUYimEP4wq0D08j6MMY3dioGeQ&s);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-repeat: none;
+            background-size :1600px;
+
+            ;
+        }
+        header {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 1rem 0;
+            text-align: center;
+        }
+        header a {
+            color: #fff;
+            text-decoration: none;
+            margin-right: 20px;
+        }
+        .form-container {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 2rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            text-align: center;
+            width: 300px;
+        }
+        nav {
+            display: flex;
+            justify-content: left;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.5);
+        }
+        .form-container h2 {
+            margin-bottom: 1rem;
+        }
+        .form-container input[type="text"],
+        .form-container input[type="password"],
+        .form-container input[type="email"] {
+            width: 100%;
+            padding: 0.5rem;
+            margin: 0.5rem 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        nav {
+            display: flex;
+            justify-content: left;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.5);
+        }
+        .form-container input[type="submit"] {
+            width: 100%;
+            padding: 0.5rem;
+            margin-top: 1rem;
+            background-color: #5D6D7E;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+        .form-container input[type="submit"]:hover {
+            background-color: #34495E;
+        }
+        .form-container .toggle-link {
+            margin-top: 1rem;
+            cursor: pointer;
+            color: #5D6D7E;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+   
+    <div class="form-container" id="loginForm">
+        <h2>Login</h2>
+        <form onsubmit="return validateLoginForm()">
+            <input type="text" id="username" placeholder="Username" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <input type="submit" value="Login">
+        </form>
+        <p class="toggle-link" onclick="toggleForm()">Don't have an account? Sign Up</p>
+    </div>
+    <div class="form-container" id="signUpForm" style="display: none;">
+        <h2>Sign Up</h2>
+        <form onsubmit="return validateSignUpForm()">
+            <input type="text" id="newUsername" placeholder="Username" required>
+            <input type="email" id="newEmail" placeholder="Email" required>
+            <input type="password" id="newPassword" placeholder="Password" required>
+            <input type="submit" value="Sign Up">
+        </form>
+        <p class="toggle-link" onclick="toggleForm()">Already have an account? Login</p>
+    </div>
+    <script>
+        function toggleForm() {
+            var loginForm = document.getElementById('loginForm');
+            var signUpForm = document.getElementById('signUpForm');
+            if (loginForm.style.display === 'none') {
+                loginForm.style.display = 'block';
+                signUpForm.style.display = 'none';
+            } else {
+                loginForm.style.display = 'none';
+                signUpForm.style.display = 'block';
+            }
+        }
+
+        function validateLoginForm() {
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+            // Replace this with your actual authentication logic
+            if (username === 'Luna32' && password === 'Luna1234') {
+                alert('Login successful!');
+                // Redirect to another page
+                window.location.href = 'main2.html';
+                return false; // Prevent form submission
+            } else {
+                alert('Invalid username or password.');
+                return false; // Prevent form submission
+            }
+        }
+
+        function validateSignUpForm() {
+            // Add validation logic for sign-up form if needed
+            return true; // Return true to allow form submission
+        }
+    </script>
+</body>
+</html>

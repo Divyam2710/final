@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emergency Services</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            text-align: center;
+        }
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            z-index: 9999;
+        }
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(7, 241, 112, 0.5);
+            z-index: 999;
+        }
+    </style>
+</head>
+<body>
+    <div class="popup" id="popup">
+        <h2>Tracking Your Location</h2>
+        <p>Please wait while we track your live location...</p>
+    </div>
+    <div class="overlay" id="overlay"></div>
+
+    <script>
+        window.onload = function() {
+            // Display the popup and overlay
+            var popup = document.getElementById("popup");
+            var overlay = document.getElementById("overlay");
+            popup.style.display = "block";
+            overlay.style.display = "block";
+
+            // Get the user's current location
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition, showError);
+            } else {
+                alert("Geolocation is not supported by this browser.");
+                hidePopupAndOverlay();
+            }
+        };
+
+        function showPosition(position) {
+            // Hide the popup and overlay
+            hidePopupAndOverlay();
+
+            // Show the location
+            alert("Emergency services are on their way. Your current location is:\nLatitude: " + position.coords.latitude + "\nLongitude: " + position.coords.longitude);
+
+            // Open a new page with the message after 3 seconds
+            setTimeout(function() {
+                window.open("message.html", "_blank");
+            }, 1000);
+        }
+
+        function showError(error) {
+            // Hide the popup and overlay
+            hidePopupAndOverlay();
+
+            // Show error message based on error code
+            switch(error.code) {
+                case error.PERMISSION_DENIED:
+                    alert("You denied the request for Geolocation. Please enable location access to use this feature.");
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    alert("Location information is unavailable.");
+                    break;
+                case error.TIMEOUT:
+                    alert("The request to get user location timed out.");
+                    break;
+                case error.UNKNOWN_ERROR:
+                    alert("An unknown error occurred while trying to access your location.");
+                    break;
+            }
+        }
+
+        function hidePopupAndOverlay() {
+            var popup = document.getElementById("popup");
+            var overlay = document.getElementById("overlay");
+            popup.style.display = "none";
+            overlay.style.display = "none";
+        }
+    </script>
+
+    <!-- Google Maps Embed API URL -->
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d223700.1490386933!2d-97.11558670486288!3d28.829485511234168!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864266db2e2dac3b%3A0xeee20d566f63267d!2sVictoria%2C%20TX%2C%20USA!5e0!3m2!1sen!2snp!4v1604921178092!5m2!1sen!2snp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+</body>
+</html>
